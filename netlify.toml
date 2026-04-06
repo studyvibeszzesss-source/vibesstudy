@@ -1,0 +1,15 @@
+[build]
+  publish = "."
+  command = ""
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[context.production.environment]
+  # Set environment variables in Netlify dashboard instead of hardcoding here
+  # GOOGLE_API_KEY = ""
+  # GOOGLE_CX = ""
+  # OPENAI_API_KEY = ""

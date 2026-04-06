@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe & Study - Planner Zone</title>
+    <link rel="stylesheet" href="../assets/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3"></script>
+</head>
+<body>
+
+    <!-- Navigation Tabs -->
+    <nav class="navbar">
+        <a href="home.html" class="nav-link">🏠 Home</a>
+        <a href="todo.html" class="nav-link">📋 To-Do</a>
+        <a href="planner.html" class="nav-link active">📅 Planner</a>
+        <a href="timer.html" class="nav-link">⏱ Timer</a>
+        <a href="wellbeing.html" class="nav-link">🧠 Wellbeing</a>
+        <a href="links.html" class="nav-link">📚 Resources</a>
+        <a href="chat.html" class="nav-link">🤖 Chat</a>
+        <a href="groups.html" class="nav-link">👥 Groups</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content-container">
+        <div class="section-card">
+            <h2>📅 Planner Zone</h2>
+            <div id="monthly" class="planner-view">
+                <h3>Monthly Study Overview</h3>
+                <div id="monthlyCalendarGrid" class="calendar-grid"></div>
+            </div>
+        </div>
+
+        <div class="section-card theme-tint">
+            <h2 id="viewDateTitle">📊 Daily Insight</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-label">Total Studied</span>
+                    <h1 id="dailyTotalTime">0h 00m</h1>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Tasks Done</span>
+                    <p id="dailyGoalsCount">0 Tasks</p>
+                </div>
+            </div>
+
+            <div class="insight-tabs">
+                <button class="insight-tab active" data-tab="details">Details</button>
+                <button class="insight-tab" data-tab="overview">Overview</button>
+            </div>
+            <div id="insightTabContent" class="insight-tab-content">
+                <div id="insightDetails" class="insight-tab-panel">
+                    <div id="dailyStudyBlocks" class="study-blocks"></div>
+                    <div id="dailyTaskBreakdown" class="mini-task-list"></div>
+                </div>
+                <div id="insightOverview" class="insight-tab-panel hidden">
+                    <div class="overview-chart-card">
+                        <div class="overview-top-row">
+                            <div class="donut-section">
+                                <canvas id="topicPieChart"></canvas>
+                            </div>
+                            <div id="pieLegend" class="pie-legend"></div>
+                        </div>
+                        <div id="hoursText" class="hours-text"></div>
+                        <div id="streakSection" class="streak-section" style="display: none;">
+                            <canvas id="streakBarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>© 2025 ADITI SRIVASTAVA. All rights reserved. <a href="../README_NETLIFY.md" class="footer-link">Netlify docs</a></p>
+            <button id="logoutBtn" class="small-btn" onclick="logout()" style="margin-top: 10px;">🚪 Logout</button>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../assets/app.js"></script>
+    <script src="../assets/planner.js"></script>
+</body>
+</html>
+</html>

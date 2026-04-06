@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe & Study - Study Groups</title>
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+    <!-- Navigation Tabs -->
+    <nav class="navbar">
+        <a href="home.html" class="nav-link">🏠 Home</a>
+        <a href="todo.html" class="nav-link">📋 To-Do</a>
+        <a href="planner.html" class="nav-link">📅 Planner</a>
+        <a href="timer.html" class="nav-link">⏱ Timer</a>
+        <a href="wellbeing.html" class="nav-link">🧠 Wellbeing</a>
+        <a href="links.html" class="nav-link">📚 Resources</a>
+        <a href="chat.html" class="nav-link">🤖 Chat</a>
+        <a href="groups.html" class="nav-link active">👥 Groups</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content-container">
+        <!-- Study Groups Section -->
+        <div class="section-card">
+            <h2>👥 Study Groups</h2>
+            <p style="margin-top:8px; opacity:0.8;">Create a new group or enter a code to join one. If you are already in a group, it will appear in the blue banner below.</p>
+            
+            <!-- Current Group Display -->
+            <div id="currentGroupDisplay" class="current-group-banner" style="display:none;">
+                <div class="group-banner-content" style="text-align:center;">
+                    <div style="display:flex; align-items:center; gap:10px; justify-content:center;">
+                        <h3 id="bannerGroupName" style="margin:0; flex:1;">📚 Group Name</h3>
+                        <button id="editGroupNameBannerBtn" class="small-btn" onclick="editGroupName()" style="display:none; padding:7px 12px; font-size:0.9rem; flex-shrink:0;">✏️ Edit</button>
+                    </div>
+                    <p id="bannerGroupStats">X members • Y active</p>
+                    <p id="bannerGroupDesc" class="group-banner-desc" style="margin: 8px 0 0; opacity:0.88;"></p>
+                    <p id="bannerGroupCode" class="group-banner-code" style="margin: 6px 0 0; font-weight:700; opacity:0.85;"></p>
+                </div>
+            </div>
+            
+            <div class="input-row">
+                <input type="text" id="groupCodeInput" placeholder="Enter Group Code (e.g. JEE27A9)">
+                <button onclick="joinGroup()">Join Group</button>
+                <button class="secondary-btn" onclick="showCreateModal()">+ Create Group</button>
+                <button class="secondary-btn" onclick="showBrowseAllGroups()">🌐 Browse All</button>
+            </div>
+            <div id="groupInfo" style="display:none;margin-top:20px;">
+                <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+                    <p id="currentGroup" style="font-size:1.1rem;font-weight:600;margin:0;"></p>
+                    <button id="editGroupNameBtn" class="small-btn" onclick="editGroupName()" style="display:none;">✏️ Edit</button>
+                </div>
+                <p id="memberCount" style="opacity:0.8;"></p>
+                <div class="group-settings" style="margin-top:15px;">
+                    <h4>🎨 Your Group Theme</h4>
+                    <div class="theme-buttons" style="justify-content:flex-start;margin-top:10px;">
+                        <button onclick="setGroupTheme('pastel-breeze')" style="background:#a2d2ff;">Pastel Breeze</button>
+                        <button onclick="setGroupTheme('sunset-glow')" style="background:#ffad60;">Sunset Glow</button>
+                        <button onclick="setGroupTheme('forest-depth')" style="background:#61b15a;">Forest Depth</button>
+                        <button onclick="setGroupTheme('purple-nebula')" style="background:#a259ff;">Purple Nebula</button>
+                        <button onclick="setGroupTheme('dawn-glow')" style="background:#f7d08a;">Dawn Glow</button>
+                        <button onclick="setGroupTheme('lilac-red')" style="background:#ff85a1;">Lilac Red</button>
+                        <button onclick="setGroupTheme('brownie-choco')" style="background:#8b4513;">Brownie Choco</button>
+                    </div>
+                    <h4 style="margin-top:16px;">📝 Your Bio</h4>
+                    <button class="small-btn" onclick="showBioEditModal()" style="margin-top:10px;">✏️ Edit Bio</button>
+                    <p id="groupCodeDisplay" style="margin-top:12px; opacity:0.85; font-weight:700;"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Live Rankings Section -->
+        <div class="section-card">
+            <div class="ranking-header">
+                <h3>🏆 Live Rankings</h3>
+                <div class="tabs-small">
+                    <button class="tab-btn-small active" onclick="switchRankingTab('today')">Today</button>
+                    <button class="tab-btn-small" onclick="switchRankingTab('week')">Week</button>
+                    <button class="tab-btn-small" onclick="switchRankingTab('month')">Month</button>
+                </div>
+            </div>
+            
+            <div id="leaderboard" class="leaderboard-list">
+                <!-- Leaderboard entries will be populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Group Modal -->
+    <div id="createGroupModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Study Group</h3>
+                <span class="close" onclick="closeCreateModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="input-group" style="margin-bottom:16px;">
+                    <label for="groupName">Group Name</label>
+                    <input type="text" id="groupName" placeholder="e.g., JEE 2027 Master Class" required>
+                </div>
+                <div class="input-group" style="margin-bottom:16px;">
+                    <label for="groupDesc">Description (optional)</label>
+                    <textarea id="groupDesc" placeholder="What is this group about?" style="border-radius:14px;padding:10px;border:1px solid rgba(255,255,255,0.6);background:rgba(255,255,255,0.7);"></textarea>
+                </div>
+                <div class="input-group">
+                    <label>Group Code: <strong id="generatedCode">-</strong></label>
+                    <button onclick="generateNewCode()" class="small-btn">🔄 Regenerate</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="createGroup()">Create Group</button>
+                <button class="secondary-btn" onclick="closeCreateModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>© 2025 ADITI SRIVASTAVA. All rights reserved. <a href="../README_NETLIFY.md" class="footer-link">Netlify docs</a></p>
+            <button id="logoutBtn" class="small-btn" onclick="logout()" style="margin-top: 10px;">🚪 Logout</button>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../assets/app.js"></script>
+    <script src="../assets/groups.js"></script>
+</body>
+</html>

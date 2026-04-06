@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe & Study - Home</title>
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+    <!-- Navigation Tabs -->
+    <nav class="navbar">
+        <a href="home.html" class="nav-link active">🏠 Home</a>
+        <a href="todo.html" class="nav-link">📋 To-Do</a>
+        <a href="planner.html" class="nav-link">📅 Planner</a>
+        <a href="timer.html" class="nav-link">⏱ Timer</a>
+        <a href="wellbeing.html" class="nav-link">🧠 Wellbeing</a>
+        <a href="links.html" class="nav-link">📚 Resources</a>
+        <a href="chat.html" class="nav-link">🤖 Chat</a>
+        <a href="groups.html" class="nav-link">👥 Groups</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content-container">
+        <div class="section-card">
+            <h1 id="welcomeHeader">✨ WELCOME</h1>
+            <p class="subtitle">Your cozy study companion—plan, track, vibe, repeat.</p>
+            
+            <div class="dashboard-previews">
+                <div class="preview-card">
+                    <h3>📋 To-Do List</h3>
+                    <p>Track all your tasks and manage your daily activities</p>
+                    <a href="todo.html"><button>Get Started</button></a>
+                </div>
+                
+                <div class="preview-card">
+                    <h3>📅 Study Planner</h3>
+                    <p>Plan your days, weeks, and months with ease</p>
+                    <a href="planner.html"><button>Open Planner</button></a>
+                </div>
+                
+                <div class="preview-card">
+                    <h3>⏱ Timer Zone</h3>
+                    <p>Time your study sessions and track productivity</p>
+                    <a href="timer.html"><button>Start Timer</button></a>
+                </div>
+                
+                <div class="preview-card">
+                    <h3>🧠 Digital Wellbeing</h3>
+                    <p>Stay balanced and healthy during your study journey</p>
+                    <a href="wellbeing.html"><button>Learn More</button></a>
+                </div>
+                
+                <div class="preview-card">
+                    <h3>🤖 Chat Assistance</h3>
+                    <p>Get help and guidance whenever you need it</p>
+                    <a href="chat.html"><button>Chat Now</button></a>
+                </div>
+                
+                <div class="preview-card">
+                    <h3>📚 Study Resources</h3>
+                    <p>Access official educational resources and links</p>
+                    <a href="links.html"><button>View Resources</button></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card group-preview" onclick="location.href='groups.html'">
+            <h3>👥 My Study Group</h3> <p><span class="dot online" id="userStatusDot"></span> <span id="userStatusText">8 members active</span></p>
+            <button class="small-btn">Join / View Rankings</button>
+        </div>
+
+        <div class="input-row">
+            <input type="text" id="groupCodeInput" placeholder="Enter Group Code (e.g. JEE27A9)"> <button class="primary-btn" onclick="joinGroup()">Join Group</button>
+        </div>
+    </div>
+
+    <div class="theme-selector section-card">
+        <h3>🎨 Choose Your Vibe</h3>
+        <div class="theme-buttons">
+            <button onclick="setTheme('default')" style="background:#a2d2ff;">Pastel Breeze</button>
+            <button onclick="setTheme('sunset-glow')" style="background:#ffad60;">Sunset Glow</button>
+            <button onclick="setTheme('forest-depth')" style="background:#61b15a;">Forest Depth</button>
+            <button onclick="setTheme('purple-nebula')" style="background:#a259ff;">Purple Nebula</button>
+            <button onclick="setTheme('dawn-glow')" style="background:#f7d08a;">Dawn Glow</button>
+            <button onclick="setTheme('lilac-red')" style="background:#ff85a1;">Lilac Red</button>
+            <button onclick="setTheme('brownie-choco')" style="background:#8b4513;">Brownie Choco</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>© 2025 ADITI SRIVASTAVA. All rights reserved. <a href="../README_NETLIFY.md" class="footer-link">Netlify docs</a></p>
+            <button id="logoutBtn" class="small-btn" onclick="logout()" style="margin-top: 10px;">🚪 Logout</button>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../assets/app.js"></script>
+    <script src="../assets/groups.js"></script>
+</body>
+</html>
+
+</body>
+</html>

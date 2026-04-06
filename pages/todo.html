@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe & Study - To-Do List</title>
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+    <!-- Navigation Tabs -->
+    <nav class="navbar">
+        <a href="home.html" class="nav-link">🏠 Home</a>
+        <a href="todo.html" class="nav-link active">📋 To-Do</a>
+        <a href="planner.html" class="nav-link">📅 Planner</a>
+        <a href="timer.html" class="nav-link">⏱ Timer</a>
+        <a href="wellbeing.html" class="nav-link">🧠 Wellbeing</a>
+        <a href="links.html" class="nav-link">📚 Resources</a>
+        <a href="chat.html" class="nav-link">🤖 Chat</a>
+        <a href="groups.html" class="nav-link">👥 Groups</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content-container">
+        <div class="section-card">
+            <h2>📋 To-Do List</h2>
+            <div class="todo-input">
+                <input id="taskInput" type="text" placeholder="Add a new task...">
+                <input id="taskTime" type="time" style="margin-left:8px;" required>
+                <button onclick="addTask()">Add</button>
+            </div>
+            <ul id="taskList" class="todo-list"></ul>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>© 2025 ADITI SRIVASTAVA. All rights reserved. <a href="../README_NETLIFY.md" class="footer-link">Netlify docs</a></p>
+            <button id="logoutBtn" class="small-btn" onclick="logout()" style="margin-top: 10px;">🚪 Logout</button>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../assets/app.js"></script>
+    <script src="../assets/todo.js"></script>
+</body>
+</html>

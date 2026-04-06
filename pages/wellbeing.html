@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe & Study - Digital Wellbeing</title>
+    <link rel="stylesheet" href="../assets/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- Navigation Tabs -->
+    <nav class="navbar">
+        <a href="home.html" class="nav-link">🏠 Home</a>
+        <a href="todo.html" class="nav-link">📋 To-Do</a>
+        <a href="planner.html" class="nav-link">📅 Planner</a>
+        <a href="timer.html" class="nav-link">⏱ Timer</a>
+        <a href="wellbeing.html" class="nav-link active">🧠 Wellbeing</a>
+        <a href="links.html" class="nav-link">📚 Resources</a>
+        <a href="chat.html" class="nav-link">🤖 Chat</a>
+        <a href="groups.html" class="nav-link">👥 Groups</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content-container">
+        <div class="section-card">
+            <h2>🧠 Digital Wellbeing</h2>
+            <div class="counselor-contact">
+                <h3>💬 Dear, are you stressed?</h3>
+                <p>Dial the Toll-Free numbers below to get in touch with government-reputed counselors available 24/7</p>
+                
+                <div class="phone-buttons">
+                    <a href="tel:14416" class="clickable-phone">
+                        <span class="phone-icon">📞</span>
+                        <span class="phone-number">14416</span>
+                    </a>
+                    <span class="phone-divider">OR</span>
+                    <a href="tel:1-800-891-4416" class="clickable-phone">
+                        <span class="phone-icon">📞</span>
+                        <span class="phone-number">1-800-891-4416</span>
+                    </a>
+                </div>
+            </div>
+            <div class="wellbeing-message">
+                <p id="motivationMsg">Stay focused, take small breaks, and keep shining! ✨</p>
+            </div>
+            <div class="appointment-form-section section-card">
+                <h3>📋 Get Support</h3>
+                <p style="opacity: 0.8; margin-bottom: 20px;">Fill out the form below to connect with our support services</p>
+                <form id="appointmentForm" class="appointment-form" onsubmit="handleAppointmentSubmit(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>I am a</label>
+                            <select name="category" required style="padding: 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.7); font-size: 1rem;">
+                                <option value="">Select...</option>
+                                <option value="Student">Student</option>
+                                <option value="Parent">Parent</option>
+                                <option value="Teacher">Teacher</option>
+                                <option value="Professional">Professional</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>I am looking for</label>
+                            <input type="text" name="lookingFor" placeholder="Counseling, Support, etc." required style="padding: 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.7); font-size: 1rem;">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Service Type</label>
+                            <select name="serviceType" required style="padding: 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.7); font-size: 1rem;">
+                                <option value="">Select...</option>
+                                <option value="Book Appointment">Book Appointment</option>
+                                <option value="Emergency Services">Emergency Services</option>
+                                <option value="Outpatient Services">Outpatient Services</option>
+                                <option value="Specialty Clinics">Specialty Clinics</option>
+                                <option value="Donations and Payments">Donations and Payments</option>
+                                <option value="General Inquiry">General Inquiry</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="form-submit-btn">→</button>
+                    </div>
+                </form>
+            </div>
+            <div id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+            <div id="socialUsage" class="section-card">
+                <h3>📈 Digital Reflection</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 15px;">Be honest with yourself—how much time did we vibe on socials today?</p>
+                
+                <div class="input-group" style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                    <select id="platformSelect" style="padding: 8px; border-radius: 8px; border: 1px solid #ddd;" onchange="toggleCustomApp()">
+                        <option value="Instagram">Instagram</option>
+                        <option value="WhatsApp">WhatsApp</option>
+                        <option value="YouTube">YouTube</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <input type="text" id="customAppName" placeholder="App name" style="display: none; padding: 8px; border-radius: 8px; border: 1px solid #ddd; width: 120px;">
+                    <input type="number" id="usageMinutes" placeholder="Minutes" style="width: 80px; padding: 8px; border-radius: 8px; border: 1px solid #ddd;">
+                    <button class="small-btn" onclick="logUsage()">Log Time</button>
+                </div>
+
+                <div id="usageDisplayArea" class="usage-chart-wrapper" style="margin-top: 20px;">
+                    <canvas id="usageChart" width="400" height="200"></canvas>
+                </div>
+                
+                <div id="wellbeingAdvice" class="mid-translucent" style="margin-top: 15px; padding: 10px; font-style: italic; color: #5b4aa5;">
+                    "Waiting for your data to give you a Vibe Check... ✨"
+                </div>
+                
+                <div style="margin-top: 15px; text-align: center;">
+                    <button onclick="askAIAboutMyUsage()" style="padding: 10px 20px; background: linear-gradient(135deg, #b88dff, #8fb3ff); color: white; border: none; border-radius: 25px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3); transition: all 0.3s ease;">✨ AI Vibe Check</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>© 2025 ADITI SRIVASTAVA. All rights reserved. <a href="../README_NETLIFY.md" class="footer-link">Netlify docs</a></p>
+            <button id="logoutBtn" class="small-btn" onclick="logout()" style="margin-top: 10px;">🚪 Logout</button>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../assets/app.js"></script>
+    <script src="../assets/wellbeing.js"></script>
+</body>
+</html>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe & Study - Your Study Companion</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <!-- (Dark mode control moved to footer) -->
+
+    <!-- Navigation (multi-page links) -->
+    <nav class="navbar">
+        <a class="nav-link" href="pages/home.html">🏠 Home</a>
+        <a class="nav-link" href="pages/todo.html">📋 To-Do</a>
+        <a class="nav-link" href="pages/planner.html">📅 Planner</a>
+        <a class="nav-link" href="#" onclick="showTab('timer'); return false;">⏱ Timer</a>
+        <a class="nav-link" href="pages/wellbeing.html">🧠 Wellbeing</a>
+        <a class="nav-link" href="pages/chat.html">🤖 Chat</a>
+        <a class="nav-link" href="pages/links.html">📚 Links</a>
+        <a class="nav-link" href="pages/groups.html">👥 Groups</a>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="content-container">
+        
+        <!-- HOME TAB -->
+        <div id="home" class="tab-content active">
+            <div class="section-card">
+                <h1>✨ Welcome to Vibe & Study</h1>
+                <p class="subtitle">Your cozy study companion—plan, track, vibe, repeat.</p>
+                
+                <div class="dashboard-previews">
+                    <div class="preview-card">
+                        <h3>📋 To-Do List</h3>
+                        <p>Track all your tasks and manage your daily activities</p>
+                        <button onclick="showTab('todo')">Get Started</button>
+                    </div>
+                    
+                    <div class="preview-card">
+                        <h3>📅 Study Planner</h3>
+                        <p>Plan your days, weeks, and months with ease</p>
+                        <button onclick="showTab('planner')">Open Planner</button>
+                    </div>
+                    
+                    <div class="preview-card">
+                        <h3>⏱ Timer Zone</h3>
+                        <p>Time your study sessions and track productivity</p>
+                        <button onclick="showTab('timer')">Start Timer</button>
+                    </div>
+                    
+                    <div class="preview-card">
+                        <h3>🧠 Digital Wellbeing</h3>
+                        <p>Stay balanced and healthy during your study journey</p>
+                        <button onclick="showTab('wellbeing')">Learn More</button>
+                    </div>
+                    
+                    <div class="preview-card">
+                        <h3>🤖 Chat Assistance</h3>
+                        <p>Get help and guidance whenever you need it</p>
+                        <button onclick="showTab('chat')">Chat Now</button>
+                    </div>
+                    
+                    <div class="preview-card">
+                        <h3>📚 Study Resources</h3>
+                        <p>Access official educational resources and links</p>
+                        <button onclick="showTab('links')">View Resources</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TO-DO TAB -->
+        <div id="todo" class="tab-content">
+            <div class="section-card">
+                <h2>📋 To-Do List</h2>
+                <div class="todo-input">
+                    <input id="taskInput" type="text" placeholder="Add a new task...">
+                    <button onclick="addTask()">Add</button>
+                </div>
+                <ul id="taskList" class="todo-list"></ul>
+            </div>
+        </div>
+
+        <!-- PLANNER TAB -->
+        <div id="planner" class="tab-content">
+            <div class="section-card">
+                <h2>📅 Planner Zone</h2>
+                <div class="planner-tabs">
+                    <button class="tab-btn active" onclick="showView('daily')">Daily</button>
+                    <button class="tab-btn" onclick="showView('weekly')">Weekly</button>
+                    <button class="tab-btn" onclick="showView('monthly')">Monthly</button>
+                </div>
+
+                <div id="daily" class="planner-view">
+                    <h3>Daily Planner</h3>
+                </div>
+
+                <div id="weekly" class="planner-view" style="display:none;">
+                    <h3>Weekly Planner</h3>
+                </div>
+
+                <div id="monthly" class="planner-view" style="display:none;">
+                    <h3>Monthly Planner</h3>
+                    <canvas id="monthlyChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- TIMER TAB -->
+        <div id="timer" class="tab-content">
+            <div class="section-card">
+                <h2>⏱ Timer Zone</h2>
+                <div id="timerDisplay" class="timer-display">00:00:00</div>
+                <div class="timer-buttons">
+                    <button onclick="startTimer()">Start</button>
+                    <button onclick="stopTimer()">Stop</button>
+                    <button onclick="resetTimer()">Reset</button>
+                </div>
+                <h3 style="margin-top: 20px;">Saved Sessions</h3>
+                <ul id="sessionList" class="session-list"></ul>
+            </div>
+        </div>
+
+        <!-- WELLBEING TAB -->
+        <div id="wellbeing" class="tab-content">
+            <div class="section-card">
+                <h2>🧠 Digital Wellbeing</h2>
+                <div id="usageWarning" class="wellbeing-warning">
+                    <p>Loading app usage...</p>
+                </div>
+                <div class="wellbeing-message">
+                    <p id="motivationMsg">Stay focused, take small breaks, and keep shining! ✨</p>
+                </div>
+                <div class="wellbeing-note">
+                    <h3>Your Notes</h3>
+                    <textarea id="personalNote" placeholder="Write your thoughts here..."></textarea>
+                    <button onclick="saveNote()">Save Note</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHAT TAB -->
+        <div id="chat" class="tab-content">
+            <div class="section-card">
+                <h2>🤖 Chat Assistance</h2>
+                <div id="chat-container" class="chat-container">
+                    <!-- Messages will appear here -->
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="user-input" placeholder="Type your message...">
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- LINKS TAB -->
+        <div id="links" class="tab-content">
+            <div class="section-card">
+                <h2>📚 Official CBSE & NTA Resources</h2>
+                <p style="margin: 10px 0 15px;">Direct government links for study, exams, results & official notices.</p>
+                <div class="link-box">
+                    <a href="https://www.cbse.gov.in/" target="_blank">CBSE Official Website</a>
+                    <a href="https://ncert.nic.in/" target="_blank">NCERT Official Website</a>
+                    <a href="https://kvsangathan.nic.in/" target="_blank">KVS Official Website</a>
+                    <a href="https://results.cbse.nic.in/" target="_blank">CBSE Results</a>
+                    <a href="https://nta.ac.in/" target="_blank">NTA Official Website</a>
+                    <a href="https://upsc.gov.in/" target="_blank">UPSC Official Website</a>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h2>▶ Official YouTube Channels</h2>
+                <div class="link-box">
+                    <a href="https://www.youtube.com/@OfficialCBSEChannel" target="_blank">CBSE Official YT</a>
+                    <a href="https://www.youtube.com/@NCERTOfficial" target="_blank">NCERT Official YT</a>
+                    <a href="https://www.youtube.com/@NTAOfficial" target="_blank">NTA Official YT</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        © 2025 ADITI SRIVASTAVA. All rights reserved.
+        <div style="margin-top:8px;">
+            <button class="dark-mode-btn" id="darkModeBtn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+            <a class="footer-link" href="https://app.netlify.com" target="_blank" rel="noopener">Deploy on Netlify</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/app.js"></script>
+    <script src="assets/todo.js"></script>
+    <script src="assets/planner.js"></script>
+    <script src="assets/timer.js"></script>
+    <script src="assets/config.js"></script>
+    <script src="assets/chat.js"></script>
+    <script src="assets/wellbeing.js"></script>
+</body>
+</html>

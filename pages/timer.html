@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe & Study - Timer Zone</title>
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+    <!-- Navigation Tabs -->
+    <nav class="navbar">
+        <a href="home.html" class="nav-link">🏠 Home</a>
+        <a href="todo.html" class="nav-link">📋 To-Do</a>
+        <a href="planner.html" class="nav-link">📅 Planner</a>
+        <a href="timer.html" class="nav-link active">⏱ Timer</a>
+        <a href="wellbeing.html" class="nav-link">🧠 Wellbeing</a>
+        <a href="links.html" class="nav-link">📚 Resources</a>
+        <a href="chat.html" class="nav-link">🤖 Chat</a>
+        <a href="groups.html" class="nav-link">👥 Groups</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content-container">
+        <div class="section-card">
+            <h2>⏱ Timer Zone</h2>
+            <div class="timer-container">
+                <div class="timer-display-container">
+                    <div id="display">00:00:00</div>
+                </div>
+                <div class="timer-buttons">
+                    <button onclick="startTimer()">Start</button>
+                    <button onclick="stopTimer()">Stop</button>
+                    <button onclick="resetTimer()">Reset</button>
+                    <button onclick="saveSession()">Save Session</button>
+                </div>
+                <div class="session-name-input" style="margin-top: 15px; text-align: center;">
+                    <input id="timerSessionName" type="text" placeholder="Session name (optional)" style="width: 250px; max-width: 90%; padding: 8px; border-radius: 8px; border: 1px solid var(--accent-1); background: var(--bg-card); color: var(--text-1);">
+                </div>
+            </div>
+
+            <div class="manual-time-entry mid-translucent">
+                <h4 style="margin-bottom:8px;">Session Details</h4>
+                <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:flex-end;">
+                    <div style="flex: 1 1 100%; min-width:220px;">
+                        <label for="manualSessionTitle" style="display:block; margin-bottom:6px; font-weight:600;">Subject / Topic</label>
+                        <input id="manualSessionTitle" type="text" placeholder="Subject or topic (e.g., Maths)" style="width:100%;">
+                    </div>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:flex-end;">
+                        <div style="display:flex; gap:10px; align-items:flex-end;">
+                            <input id="manualHours" type="number" placeholder="Hours" min="0" max="6" style="width:80px;">
+                            <input id="manualMinutes" type="number" placeholder="Minutes" min="0" max="59" style="width:80px;">
+                        </div>
+                        <button onclick="saveSession()" style="min-width:120px;">Save Session</button>
+                    </div>
+                </div>
+                <p style="font-size:12px;opacity:0.8;margin-top:8px;">Add manual time (30 min - 6 hours) or use timer. Subject/topic will appear inside insight.</p>
+            </div>
+            <h3 style="margin-top: 20px;">Saved Sessions</h3>
+            <div id="sessionBarGraph" style="margin-bottom:24px;"></div>
+            <div id="sessionList" class="session-list boxes"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>© 2025 ADITI SRIVASTAVA. All rights reserved. <a href="../README_NETLIFY.md" class="footer-link">Netlify docs</a></p>
+            <button id="logoutBtn" class="small-btn" onclick="logout()" style="margin-top: 10px;">🚪 Logout</button>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../assets/app.js"></script>
+    <script src="../assets/timer.js"></script>
+</body>
+</html>
