@@ -23,6 +23,8 @@ app.post('/ai', async (req, res) => {
       return res.status(500).json({ error: 'GEMINI_API_KEY is not set in server environment.' });
     }
 
+    const modelName = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+
     // NEW: Universal System Instructions
     const systemInstructions = `
       You are 'Vibe AI,' a study assistant for students. 
@@ -35,7 +37,8 @@ app.post('/ai', async (req, res) => {
     `;
 
     const genAI = new GoogleGenerativeAI(API_KEY);
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+    const model = genAI.getGenerativeModel({ model: modelName });
+    console.log('Gemini model selected:', modelName);
 
     const promptText = `${systemInstructions}\n\nUser asked: ${prompt}`;
     const result = await model.generateContent(promptText);
